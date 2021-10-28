@@ -10,4 +10,4 @@ Instalación de una base de datos redis:
 
 Creación de una variable de entorno donde ponemos la dirección donde se encuentra la base de datos redis:
 
-    export REDIS_SERVER=flask
+    export REDIS_SERVER=localhost
