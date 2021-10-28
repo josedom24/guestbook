@@ -8,10 +8,7 @@ app = Flask(__name__)
 def inicio():
     noredis=False
     try:
-        server=os.environ["REDIS_SERVER"]
-        if server=="":
-            server="localhost"
-        r = redis.Redis(host=server, port=6379, db=0)
+        r = redis.Redis(host="localhost", port=6379, db=0)
         l=r.lrange("lista",0,-1)
         lista=[x.decode('utf-8') for x in l]
     except:
@@ -23,10 +20,7 @@ def inicio():
 @app.route('/add',methods=["GET","POST"])
 def add():
     try:
-        server=os.environ["REDIS_SERVER"]
-        if server=="":
-            server="localhost"
-        r = redis.Redis(host=server, port=6379, db=0)
+        r = redis.Redis(host="localhost", port=6379, db=0)
         if request.form.get("info")!="":
             l=r.lpush("lista",request.form.get("info"))
     except:
