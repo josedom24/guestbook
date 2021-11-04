@@ -1,10 +1,10 @@
 from flask import Flask, render_template, abort, redirect, request
 import os
 import redis
-app = Flask(__name__)	
+prog = Flask(__name__)	
 
 
-@app.route('/',methods=["GET","POST"])
+@prog.route('/',methods=["GET","POST"])
 def inicio():
     noredis=False
     try:
@@ -17,7 +17,7 @@ def inicio():
     
     return render_template("inicio.html",noredis=noredis,lista=lista)
 
-@app.route('/add',methods=["GET","POST"])
+@prog.route('/add',methods=["GET","POST"])
 def add():
     try:
         r = redis.Redis(host="localhost", port=6379, db=0)
@@ -27,4 +27,4 @@ def add():
         abort(404)
     return redirect("/")
 if __name__ == '__main__':
-    app.run('0.0.0.0',5000,debug=True)
+    prog.run('0.0.0.0',5000,debug=True)
